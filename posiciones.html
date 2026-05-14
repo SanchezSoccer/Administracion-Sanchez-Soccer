@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posiciones - Sánchez Soccer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">SÁNCHEZ <span>SOCCER</span></div>
+            <nav class="menu">
+                <a href="index.html"><i>🏠</i> Inicio</a>
+                <a href="equipos.html"><i>⚽</i> Equipos</a>
+                <a href="partidos.html"><i>📅</i> Partidos</a>
+                <a href="posiciones.html" class="active"><i>🏆</i> Posiciones</a>
+                <a href="jugadores.html"><i>👥</i> Jugadores</a>
+                <a href="goleo.html" ><i>👟</i> Tabla de Goleo</a>
+                <a href="#"><i>⚙️</i> Configuración</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="user-info"><span>Administrador</span><div class="avatar"></div></div>
+            </header>
+
+            <section class="content">
+                <div class="header-flex">
+                    <div class="seccion-titulo">
+                        <h1>Tabla de Posiciones</h1>
+                        <p>Seguimiento en tiempo real del rendimiento de la liga.</p>
+                    </div>
+                    <button class="btn-primary">Actualizar Puntos</button>
+                </div>
+
+                <table class="tabla-admin tabla-posiciones">
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Equipo</th>
+                            <th>PJ</th>
+                            <th>G</th>
+                            <th>E</th>
+                            <th>P</th>
+                            <th>GF</th>
+                            <th>GC</th>
+                            <th>DG</th>
+                            <th class="pts">Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="top-rank">
+                            <td>1</td>
+                            <td><strong>Real Coatzacoalcos</strong></td>
+                            <td>10</td>
+                            <td>8</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>25</td>
+                            <td>10</td>
+                            <td>+15</td>
+                            <td class="pts">25</td>
+                        </tr>
+                        <tr class="top-rank">
+                            <td>2</td>
+                            <td><strong>Deportivo Chávez</strong></td>
+                            <td>10</td>
+                            <td>7</td>
+                            <td>2</td>
+                            <td>1</td>
+                            <td>22</td>
+                            <td>12</td>
+                            <td>+10</td>
+                            <td class="pts">23</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>FC Ale</strong></td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>1</td>
+                            <td>4</td>
+                            <td>18</td>
+                            <td>15</td>
+                            <td>+3</td>
+                            <td class="pts">16</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</body>
+</html>

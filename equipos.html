@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos - Sánchez Soccer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">SÁNCHEZ <span>SOCCER</span></div>
+            <nav class="menu">
+                <a href="#" class="active"><i>🏠</i> Inicio</a>
+                <a href="equipos.html" class="active"><i>⚽</i> Equipos</a>
+                <a href="paritidos.html"><i>📅</i> Partidos</a>
+                <a href="posiciones.html"><i>🏆</i> Posiciones</a>
+                <a href="jugadores.html"><i>👥</i> Jugadores</a>
+                <a href="goleo.html" ><i>👟</i> Tabla de Goleo</a>
+                <a href="#"><i>⚙️</i> Configuración</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="user-info"><span>Administrador</span><div class="avatar"></div></div>
+            </header>
+
+            <section class="content">
+                <div class="header-flex">
+                    <div class="seccion-titulo">
+                        <h1>Gestión de Equipos</h1>
+                        <p>Administra los clubes inscritos en la base de datos de la liga.</p>
+                    </div>
+                    <!-- Botón que activa el Modal -->
+                    <button class="btn-primary" onclick="abrirModal()">+ Registrar Equipo</button>
+                </div>
+
+                <!-- Tabla de Equipos -->
+                <table class="tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Escudo</th>
+                            <th>Nombre del Equipo</th>
+                            <th>Delegado</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-cuerpo">
+                        <!-- Los datos de Supabase se cargan aquí automáticamente -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <!-- VENTANA MODAL DE REGISTRO -->
+    <div id="modalEquipo" class="modal-container">
+        <div class="modal-content card-formulario">
+            <div class="header-flex">
+                <h3>Nuevo Registro de Equipo</h3>
+                <button onclick="cerrarModal()" class="btn-cerrar-x">✕</button>
+            </div>
+            <br>
+            <form id="form-nuevo-equipo">
+                <div class="form-group">
+                    <label>Nombre del Club</label>
+                    <input type="text" id="nombre-equipo" placeholder="Ej. Real Coatzacoalcos" required>
+                </div>
+                <div class="form-group">
+                    <label>Nombre del Delegado</label>
+                    <input type="text" id="delegado-equipo" placeholder="Ej. Luis Chávez" required>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="submit" class="btn-primary" style="flex: 2;">Guardar Equipo</button>
+                    <button type="button" onclick="cerrarModal()" class="btn-delete" style="flex: 1;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SDK DE SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // CONFIGURACIÓN DE SUPABASE
+        const SUPABASE_URL = 'TU_URL_DE_SUPABASE';
+        const SUPABASE_KEY = 'TU_ANON_KEY_DE_SUPABASE';
+        const supabase = supabasejs.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Lógica del Modal
+        function abrirModal() { document.getElementById('modalEquipo').style.display = 'flex'; }
+        function cerrarModal() { document.getElementById('modalEquipo').style.display = 'none'; }
+
+        // Cargar Equipos desde la BD
+        async function cargarEquipos() {
+            const { data: equipos, error } = await supabase
+                .from('equipos')
+                .select('*')
+                .order('id', { ascending: false });
+
+            if (error) {
+                console.error("Error:", error);
+                return;
+            }
+
+            const tbody = document.getElementById('tabla-cuerpo');
+            tbody.innerHTML = ''; 
+
+            equipos.forEach(eq => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>#${eq.id}</td>
+                        <td><div class="mini-escudo"></div></td>
+                        <td><strong>${eq.nombre}</strong></td>
+                        <td>${eq.delegado}</td>
+                        <td><span class="badge activo">En Regla</span></td>
+                        <td>
+                            <button class="btn-edit">Editar</button>
+                            <button class="btn-delete" onclick="eliminarEquipo(${eq.id})">Borrar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Insertar Equipo Nuevo
+        document.getElementById('form-nuevo-equipo').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre-equipo').value;
+            const delegado = document.getElementById('delegado-equipo').value;
+
+            const { data, error } = await supabase
+                .from('equipos')
+                .insert([{ nombre, delegado, puntos: 0, pj: 0 }]);
+
+            if (error) {
+                alert("Error al guardar: " + error.message);
+            } else {
+                alert("¡Equipo guardado con éxito!");
+                cerrarModal();
+                e.target.reset();
+                cargarEquipos(); // Refrescar tabla
+            }
+        });
+
+        // Eliminar Equipo
+        async function eliminarEquipo(id) {
+            if(confirm("¿Estás seguro de eliminar este club? Esta acción no se puede deshacer.")) {
+                const { error } = await supabase.from('equipos').delete().eq('id', id);
+                if (!error) cargarEquipos();
+            }
+        }
+
+        // Ejecutar carga inicial
+        cargarEquipos();
+    </script>
+  
+    <script src="main.js"></script>
+</body>
+</body>
+</html>

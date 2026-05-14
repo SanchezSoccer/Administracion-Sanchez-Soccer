@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugadores y Credenciales - Sánchez Soccer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">SÁNCHEZ <span>SOCCER</span></div>
+            <nav class="menu">
+                <a href="index.html"><i>🏠</i> Inicio</a>
+                <a href="equipos.html"><i>⚽</i> Equipos</a>
+                <a href="partidos.html"><i>📅</i> Partidos</a>
+                <a href="posiciones.html"><i>🏆</i> Posiciones</a>
+                <a href="jugadores.html" class="active"><i>👥</i> Jugadores</a>
+                <a href="goleo.html" ><i>👟</i> Tabla de Goleo</a>
+                <a href="#"><i>⚙️</i> Configuración</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="user-info">
+                    <span>Administrador de Liga</span>
+                    <div class="avatar"></div>
+                </div>
+            </header>
+
+            <section class="content">
+                <div class="seccion-titulo">
+                    <h1>Registro de Jugadores</h1>
+                    <p>Crea nuevos perfiles y genera credenciales automáticamente.</p>
+                </div>
+
+                <div class="grid-form">
+                    <div class="card-formulario">
+                        <h3>Datos del Jugador</h3>
+                        <br>
+                        <form id="form-registro">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" id="reg-nombre" placeholder="Nombre del jugador" required>
+                            </div>
+                            <div class="form-group">
+                            <label>Foto del Jugador</label>
+                            <input type="file" id="reg-foto" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label>Equipo</label>
+                                <select id="reg-equipo" required>
+                                    <option value="">Selecciona un equipo...</option>
+                                    <option value="Real Coatzacoalcos">Real Coatzacoalcos</option>
+                                    <option value="Deportivo Chávez">Deportivo Chávez</option>
+                                    <option value="FC Ale">FC Ale</option>
+                                    <option value="Inter de Coatza">Inter de Coatza</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Dorsal (#)</label>
+                                <input type="number" id="reg-dorsal" placeholder="10" required>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%;">Generar Credencial</button>
+                        </form>
+                    </div>
+
+                    <div class="preview-area">
+                        <div class="credencial" id="credencial-print">
+                            <div class="credencial-header">
+                                <span>SÁNCHEZ SOCCER</span>
+                                <span>TEMP 2026</span>
+                            </div>
+                            <div class="credencial-body">
+                                <div class="foto-jugador">
+                                <span id="txt-foto">FOTO</span>
+                                <img id="img-preview" src="" alt="Previsualización">
+                                </div>
+                                <div class="datos-jugador">
+                                    <h2 id="card-nombre">NOMBRE</h2>
+                                    <p id="card-equipo">EQUIPO</p>
+                                    <div class="dorsal-badge">#<span id="card-dorsal">00</span></div>
+                                </div>
+                            </div>
+                            <div class="credencial-footer">
+                                JUGADOR OFICIAL DE LA LIGA
+                            </div>
+                        </div>
+                        <br>
+                        <button onclick="window.print()" class="btn-primary" style="background: var(--negro-sidebar); width: 100%;">
+                            🖨️ Imprimir Credencial
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const form = document.getElementById('form-registro');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Capturar datos
+            const nombre = document.getElementById('reg-nombre').value;
+            const equipo = document.getElementById('reg-equipo').value;
+            const dorsal = document.getElementById('reg-dorsal').value;
+
+            // Actualizar credencial en tiempo real
+            document.getElementById('card-nombre').innerText = nombre;
+            document.getElementById('card-equipo').innerText = equipo;
+            document.getElementById('card-dorsal').innerText = dorsal;
+
+            alert('¡Credencial lista para impresión!');
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</body>
+</html>

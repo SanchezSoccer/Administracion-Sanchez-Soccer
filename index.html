@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sánchez Soccer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Importamos una fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <!-- Barra Lateral -->
+        <aside class="sidebar">
+            <div class="logo">
+                SÁNCHEZ <span>SOCCER</span>
+            </div>
+            <nav class="menu">
+                <a href="index.html" class="active"><i>🏠</i> Inicio</a>
+                <a href="equipos.html"><i>⚽</i> Equipos</a>
+                <a href="paritidos.html"><i>📅</i> Partidos</a>
+                <a href="posiciones.html"><i>🏆</i> Posiciones</a>
+                <a href="jugadores.html"><i>👥</i> Jugadores</a>
+                <a href="goleo.html"><i>👟</i> Tabla de Goleo</a>
+                <a href="#"><i>⚙️</i> Configuración</a>
+                
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="user-info">
+                    <span>Arcadio Mejia</span>
+                    <div class="avatar"></div>
+                </div>
+            </header>
+
+            <section class="content">
+                <div class="seccion-titulo">
+                    <h1>Panel de Gestión</h1>
+                    <p>Control general de la liga y estadísticas actuales.</p>
+                </div>
+
+                <!-- Tarjetas de Resumen -->
+                <div class="grid-stats">
+                    <div class="card">
+                        <h3>Equipos</h3>
+                        <p class="numero">16</p>
+                    </div>
+                    <div class="card">
+                        <h3>Próximos Partidos</h3>
+                        <p class="numero">8</p>
+                    </div>
+                    <div class="card destacada">
+                        <h3>Inscripciones</h3>
+                        <p class="numero">Activas</p>
+                    </div>
+                </div>
+
+                <button class="btn-primary">Registrar Nuevo Partido</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</body>
+</html>

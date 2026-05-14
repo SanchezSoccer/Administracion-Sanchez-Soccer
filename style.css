@@ -1,0 +1,177 @@
+
+:root {
+    --naranja: #ff6600;
+    --naranja-oscuro: #e65c00;
+    --negro-sidebar: #1a1a1a;
+    --negro-fondo: #121212;
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f7;
+    --texto-suave: #666666;
+    --verde-exito: #28a745;
+    --rojo-error: #d32f2f;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--gris-claro);
+    color: var(--negro-fondo);
+    line-height: 1.6;
+}
+
+
+.dashboard-container { display: flex; min-height: 100vh; }
+
+.sidebar {
+    width: 260px;
+    background-color: var(--negro-sidebar);
+    color: var(--blanco);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+}
+.logo span { color: var(--naranja); }
+
+.menu a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.menu a:hover { color: var(--naranja); background: rgba(255,102,0,0.1); }
+.menu a.active { background-color: var(--naranja) !important; color: white !important; font-weight: bold; }
+
+
+.main-content { flex: 1; }
+.top-header {
+    background: white;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.avatar { width: 35px; height: 35px; background: var(--naranja); border-radius: 50%; margin-left: 10px; }
+.content { padding: 30px; }
+.seccion-titulo { border-left: 5px solid var(--naranja); padding-left: 15px; margin-bottom: 30px; }
+
+.tabla-admin {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.tabla-admin th { background: var(--negro-sidebar); color: white; padding: 15px; text-align: left; }
+.tabla-admin td { padding: 15px; border-bottom: 1px solid #eee; }
+
+.credencial {
+    width: 350px;
+    height: 220px;
+    background: white;
+    border: 2px solid var(--negro-sidebar);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    margin: 0 auto;
+}
+
+.credencial-header {
+    background: var(--negro-sidebar);
+    color: var(--naranja);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+
+.credencial-body { display: flex; padding: 15px; gap: 15px; align-items: center; }
+
+.foto-jugador {
+    width: 90px;
+    height: 110px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foto-jugador img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.datos-jugador h2 { font-size: 1.2rem; margin: 0; color: var(--negro-sidebar); text-transform: uppercase; }
+.datos-jugador p { color: var(--naranja); font-weight: bold; font-size: 0.9rem; }
+
+.dorsal-badge {
+    margin-top: 8px;
+    background: var(--negro-sidebar);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 800;
+    display: inline-block;
+}
+
+.credencial-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: var(--naranja);
+    color: white;
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+
+.btn-primary {
+    background: var(--naranja);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-primary:hover { background: var(--naranja-oscuro); }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* IMPRESIÓN */
+@media print {
+    .sidebar, .top-header, .btn-primary, form { display: none !important; }
+    .credencial { box-shadow: none; position: absolute; top: 0; left: 0; }
+}

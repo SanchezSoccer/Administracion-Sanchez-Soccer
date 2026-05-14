@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Goleo - Sánchez Soccer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">SÁNCHEZ <span>SOCCER</span></div>
+            <nav class="menu">
+                <a href="#" class="active"><i>🏠</i> Inicio</a>
+                <a href="equipos.html"><i>⚽</i> Equipos</a>
+                <a href="paritidos.html"><i>📅</i> Partidos</a>
+                <a href="posiciones.html"><i>🏆</i> Posiciones</a>
+                <a href="jugadores.html"><i>👥</i> Jugadores</a>
+                <a href="goleo.html" class="active"><i>👟</i> Tabla de Goleo</a>
+                <a href="#"><i>⚙️</i> Configuración</a>
+          
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="user-info"><span>Administrador</span><div class="avatar"></div></div>
+            </header>
+
+            <section class="content">
+                <div class="seccion-titulo">
+                    <h1>Tabla de Goleadores</h1>
+                    <p>Máximos anotadores de la temporada actual.</p>
+                </div>
+
+                <table class="tabla-admin">
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Jugador</th>
+                            <th>Equipo</th>
+                            <th>Goles Totales</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-goleo-cuerpo">
+                        <!-- JS llenará esto -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const goleadores = [
+            { nombre: "Rabelo Jr.", equipo: "Real Coatzacoalcos", goles: 12 },
+            { nombre: "Chávez Pro", equipo: "Deportivo Chávez", goles: 10 },
+            { nombre: "Luis Gómez", equipo: "FC Ale", goles: 7 }
+        ];
+
+        function cargarGoleo() {
+            const cuerpo = document.getElementById('tabla-goleo-cuerpo');
+            // Ordenar por goles
+            goleadores.sort((a, b) => b.goles - a.goles);
+
+            cuerpo.innerHTML = "";
+            goleadores.forEach((jugador, i) => {
+                cuerpo.innerHTML += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td><strong>${jugador.nombre}</strong></td>
+                        <td>${jugador.equipo}</td>
+                        <td style="color: var(--naranja); font-weight: bold;">${jugador.goles} Goles</td>
+                    </tr>
+                `;
+            });
+        }
+        cargarGoleo();
+    </script>
+    
+    <script src="main.js"></script>
+</body>
+</body>
+</html>
